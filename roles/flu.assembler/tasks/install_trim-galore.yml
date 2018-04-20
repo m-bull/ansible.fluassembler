@@ -1,0 +1,23 @@
+---
+
+- name: "Install CutAdapt with pip"
+  pip:
+    name: cutadapt
+    version: "{{ cutadapt_version }}"
+  become: yes
+
+- name: "Download trim-galore!"
+  unarchive:
+    src: "{{ trim_galore_archive_url }}"
+    dest: "{{ trim_galore_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: "Link trim-galore executables"
+  file:
+    state: link
+    src: "{{ trim_galore_install_dir }}/TrimGalore-{{ trim_galore_version }}/{{ item }}"
+    dest: "{{ path_dir }}/{{ item }}"
+  become: yes
+  with_items:
+    - trim_galore

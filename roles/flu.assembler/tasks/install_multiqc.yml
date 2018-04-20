@@ -1,0 +1,7 @@
+---
+
+- name: "Install MultiQC with pip"
+  pip:
+    name: multiqc
+    version: "{{ multiqc_version }}"
+  become: yes

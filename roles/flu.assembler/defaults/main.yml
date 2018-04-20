@@ -42,6 +42,22 @@ kmc_version_short: 3
 kmc_archive_url: https://github.com/refresh-bio/KMC/releases/download/{{ kmc_version}}/KMC{{ kmc_version_short }}.linux.tar.gz
 kmc_install_dir: /usr/local/bin
 
+## Cutadapt
+cutadapt_version: 1.16
+
+## trim-galore
+trim_galore_version: 0.4.5
+trim_galore_archive_url: https://github.com/FelixKrueger/TrimGalore/archive/{{ trim_galore_version }}.tar.gz
+trim_galore_install_dir: /usr/local/bin
+
+## FastQC
+fastqc_version: 0.11.7
+fastqc_archive_url: https://www.bioinformatics.babraham.ac.uk/projects/fastqc/fastqc_v{{ fastqc_version }}.zip
+fastqc_install_dir: /usr/local/bin
+
+## MultiQC
+multiqc_version: 1.5
+
 ## Quast
 quast_version: 4.6.3
 

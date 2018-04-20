@@ -1,0 +1,27 @@
+---
+
+- name: "Download FastQC"
+  unarchive:
+    src: "{{ fastqc_archive_url }}"
+    dest: "{{ fastqc_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: "Make fastqc wrapper executable"
+  file:
+    state: file
+    path: "{{ fastqc_install_dir }}/FastQC/{{ item }}"
+    owner: root
+    mode: 0755
+  become: yes
+  with_items:
+    - fastqc
+
+- name: "Link FastQC executables"
+  file:
+    state: link
+    src: "{{ fastqc_install_dir }}/FastQC/{{ item }}"
+    dest: "{{ path_dir }}/{{ item }}"
+  become: yes
+  with_items:
+    - fastqc
