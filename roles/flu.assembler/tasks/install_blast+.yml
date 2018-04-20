@@ -1,0 +1,20 @@
+---
+
+- name: "Download BLAST+"
+  unarchive:
+    src: "{{ blast_archive_url }}"
+    dest: "{{ blast_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: "Link BLAST+ executables"
+  file:
+    state: link
+    src: "{{ blast_install_dir }}/ncbi-blast-{{ blast_version }}/bin/{{ item }}"
+    dest: "{{ path_dir }}/{{ item }}"
+  become: yes
+  with_items:
+    - blastn
+    - blastp
+    - makeblastdb
+    - blastdbcmd

@@ -23,6 +23,10 @@ htslib_version: 1.8
 htslib_archive_url: https://github.com/samtools/htslib/releases/download/{{ htslib_version }}/htslib-{{ htslib_version }}.tar.bz2
 htslib_install_dir: /usr/local/bin
 
+## BLAST+
+blast_version: 2.7.1+
+blast_archive_url: https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-{{ blast_version }}-x64-linux.tar.gz
+blast_install_dir: /usr/local/bin
 
 ## BWA
 bwa_repo: https://github.com/lh3/bwa.git
