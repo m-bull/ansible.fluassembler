@@ -1,0 +1,28 @@
+---
+
+- name: "Download MUMmer"
+  unarchive:
+    src: "{{ mummer_archive_url }}"
+    dest: "{{ mummer_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: Make MUMmer
+  shell: "make"
+  args:
+    chdir: "{{ mummer_install_dir }}/MUMmer{{ mummer_version }}"
+    creates: "{{ mummer_install_dir }}/MUMmer{{ mummer_version }}/mummer"
+  become: yes
+
+- name: "Find mummer executables"
+  command: "find {{ mummer_install_dir }}/MUMmer{{ mummer_version }} -mindepth 1 -maxdepth 1 -executable -type f"
+  register: mummer_exes
+
+- name: "Link MUMmer executables"
+  file:
+    state: link
+    src: "{{ mummer_install_dir }}/MUMmer{{ mummer_version }}/{{ item | basename}}"
+    dest: "{{ path_dir }}/{{ item | basename}}"
+  become: yes
+  with_items:
+    - "{{ mummer_exes.stdout_lines }}"

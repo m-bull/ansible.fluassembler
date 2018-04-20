@@ -1,0 +1,22 @@
+---
+
+- name: "Download varscan archive"
+  get_url:
+    url: "{{ varscan_archive_url }}"
+    dest: "{{ varscan_install_dir }}"
+  become: yes
+
+- name: Link varscan jar into PATH
+  file:
+    state: link
+    src: "{{ varscan_install_dir }}/VarScan.v{{ varscan_version }}.jar"
+    dest: "{{ path_dir }}/varscan.jar"
+  become: yes
+
+- name: Create varscan helper script
+  template:
+    src: varscan_helper.j2
+    dest: "{{ path_dir }}/varscan"
+    mode: 0755
+  become: yes
+

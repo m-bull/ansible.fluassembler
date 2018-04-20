@@ -1,0 +1,8 @@
+---
+
+- name: "Install IVA with pip"
+  pip:
+    name: iva
+    version: "{{ iva_version }}"
+    executable: pip3
+  become: yes

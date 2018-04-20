@@ -1,0 +1,26 @@
+---
+
+- name: "Download HTSLib"
+  unarchive:
+    src: "{{ htslib_archive_url }}"
+    dest: "{{ htslib_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: "Make HTSLib"
+  command: "make"
+  args:
+    chdir: "{{ htslib_install_dir }}/htslib-{{ htslib_version }}"
+    creates: "{{ path_dir }}/htslib-{{ htslib_version }}/samtools"
+  become: yes
+
+- name: Link HTSLib binaries into PATH
+  file:
+    state: link
+    src: "{{ htslib_install_dir }}/htslib-{{ htslib_version }}/{{ item }}"
+    dest: "{{ path_dir }}/{{ item }}"
+  become: yes
+  with_items:
+    - bgzip
+    - tabix
+

@@ -1,0 +1,34 @@
+---
+
+- name: "Install EPEL"
+  yum:
+    name: epel-release
+    state: present
+  become: yes
+
+- name: Install CentOS packages required for building pipeline dependencies
+  yum:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  with_items:
+    - bzip2
+    - bzip2-devel
+    - gcc-c++
+    - java-1.8.0-openjdk-headless
+    - ncurses-devel
+    - python2-pip
+    - python34
+    - python34-pip
+    - unzip
+    - wget
+    - xz-devel
+    - zlib-devel
+
+- name: Install required python packages from yum
+  yum:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  with_items:
+    - python2-biopython

@@ -1,0 +1,25 @@
+---
+
+- name: "Download SMALT"
+  unarchive:
+    src: "{{ smalt_archive_url }}"
+    dest: "{{ smalt_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: Make SMALT
+  shell: "./configure && make"
+  args:
+    chdir: "{{ smalt_install_dir }}/smalt-{{ smalt_version }}"
+    creates: "{{ smalt_install_dir }}/smalt-{{ smalt_version }}/src/smalt"
+  become: yes
+
+
+- name: "Link SMALT executables"
+  file:
+    state: link
+    src: "{{ smalt_install_dir }}/smalt-{{ smalt_version }}/src/{{ item }}"
+    dest: "{{ path_dir }}/{{ item }}"
+  become: yes
+  with_items:
+    - smalt

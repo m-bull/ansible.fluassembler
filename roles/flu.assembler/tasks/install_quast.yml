@@ -1,0 +1,7 @@
+---
+
+- name: "Install quast with pip"
+  pip:
+    name: quast
+    version: "{{ quast_version }}"
+  become: yes

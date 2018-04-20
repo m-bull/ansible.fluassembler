@@ -1,0 +1,27 @@
+---
+
+- name: "Install BBTOOLS"
+  unarchive:
+    src: "{{ bbtools_archive_url }}"
+    dest: "{{ bbtools_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: "fix permissions on BBTOOLS dir"
+  file:
+    state: directory
+    path: "{{ bbtools_install_dir }}/bbmap"
+    owner: root
+    mode: 0755
+    recurse: yes
+  become: yes
+
+- name: "Link bbtools executables"
+  file:
+    state: link
+    src: "{{ bbtools_install_dir }}/bbmap/{{ item }}"
+    dest: "{{ path_dir }}/{{ item }}"
+  become: yes
+  with_items:
+    - bbmap.sh
+    - bbduk.sh
