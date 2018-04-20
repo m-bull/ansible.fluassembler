@@ -1,10 +1,4 @@
-# ansible.snapperdb
-Ansible playbook for installing https://github.com/phe-bioinformatics/snapperdb
+# ansible.fluassembler
+Ansible playbook for installing a simple flu assembly pipeline
 
-> `ansible-playbook playbook.yml --extra-vars="pg_pword=SECURE_PASSWORD"`
-
-Setup SNP database configs with `vars/main.yml`
-
-TODO:
-
-Postgres auth config
+> `ansible-playbook playbook.yml`
