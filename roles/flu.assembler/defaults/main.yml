@@ -47,6 +47,25 @@ kmc_version_short: 3
 kmc_archive_url: https://github.com/refresh-bio/KMC/releases/download/{{ kmc_version}}/KMC{{ kmc_version_short }}.linux.tar.gz
 kmc_install_dir: /usr/local/bin
 
+## Kraken
+download_kraken_db: True
+kraken_version: 1.1
+kraken_archive_url: https://github.com/DerrickWood/kraken/archive/v{{ kraken_version }}.tar.gz
+kraken_install_dir: /usr/local/bin
+kraken_db_name: minikraken_20171101_8GB_dustmasked
+kraken_db_url: https://ccb.jhu.edu/software/kraken/dl/{{ kraken_db_name }}.tgz
+kraken_db_dir: /opt/kraken-db
+
+## Centrifuge
+download_centrifuge_db: True
+centrifuge_version: 1.0.3
+centrifuge_archive_url: https://github.com/infphilo/centrifuge/archive/v{{ centrifuge_version }}.tar.gz
+centrifuge_install_dir: /usr/local/bin
+centrifuge_db_name: "p_compressed+h+v"
+centrifuge_db_url: "ftp://ftp.ccb.jhu.edu/pub/infphilo/centrifuge/data/{{ centrifuge_db_name }}.tar.gz"
+centrifuge_db_dir: /opt/centrifuge-db
+
+
 ## Cutadapt
 cutadapt_version: 1.16
 

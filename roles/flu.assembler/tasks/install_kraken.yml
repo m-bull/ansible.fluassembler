@@ -1,0 +1,38 @@
+---
+
+- name: "Download Kraken"
+  unarchive:
+    src: "{{ kraken_archive_url }}"
+    dest: /tmp/
+    remote_src: yes
+  become: yes
+
+- name: "Run Kraken installer"
+  shell: "./install_kraken.sh {{ kraken_install_dir }}"
+  args:
+    chdir: "/tmp/kraken-{{ kraken_version }}"
+    creates: "{{ path_dir }}/kraken"
+  become: yes
+
+- name: "Check Kraken DB dir exists"
+  file:
+    state: directory
+    path: "{{ kraken_db_dir }}"
+    mode: 0755
+  become: yes
+
+- name: "Download Kraken database"
+  unarchive:
+    src: "{{ kraken_db_url }}"
+    dest: "{{ kraken_db_dir }}"
+    remote_src: yes
+    creates: "{{ kraken_db_dir }}/{{kraken_db_name }}/database.idx"
+  become: yes
+
+- name: "Set environment variable pointing to Kraken DB dir"
+  lineinfile:
+    state: present
+    path: /etc/environment
+    line: "export KRAKEN_DEFAULT_DB={{ kraken_db_dir }}/{{ kraken_db_name }}"
+  become: yes
+

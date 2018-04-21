@@ -1,40 +1,42 @@
 ---
 
-- include_tasks: install_centos_packages.yml
-  when: ansible_distribution == 'CentOS'
+#- include_tasks: install_centos_packages.yml
+#  when: ansible_distribution == 'CentOS'
 
-- include_tasks: install_ubuntu_packages.yml
-  when: ansible_distribution == 'Ubuntu'
+#- include_tasks: install_ubuntu_packages.yml
+#  when: ansible_distribution == 'Ubuntu'
 
 
-- name: "Check whether /etc/environment contains '/usr/local/bin'"
-  command: grep -q "/usr/local/bin" /etc/environment
-  register: env_absent
-  check_mode: no
-  ignore_errors: yes
-  changed_when: no
+#- name: "Check whether /etc/environment contains '/usr/local/bin'"
+#  command: grep -q "/usr/local/bin" /etc/environment
+#  register: env_absent
+#  check_mode: no
+#  ignore_errors: yes
+#  changed_when: no
 
-- name: "Add /usr/local/bin to global PATH"
-  shell: 'echo "export PATH=$PATH:/usr/local/bin" >> /etc/environment'
-  become: yes
-  when: env_absent.rc == 1
+#- name: "Add /usr/local/bin to global PATH"
+#  shell: 'echo "export PATH=$PATH:/usr/local/bin" >> /etc/environment'
+#  become: yes
+#  when: env_absent.rc == 1
 
-- include_tasks: install_assembly_improvement.yml
-- include_tasks: install_bbtools.yml
-- include_tasks: install_bcftools.yml
-- include_tasks: install_blast+.yml
-- include_tasks: install_bwa.yml
-- include_tasks: install_fastqc.yml
-- include_tasks: install_GATK.yml
-- include_tasks: install_htslib.yml
-- include_tasks: install_iva.yml
-- include_tasks: install_kmc.yml
-- include_tasks: install_multiqc.yml
-- include_tasks: install_mummer.yml
-- include_tasks: install_picard.yml
-- include_tasks: install_quast.yml
-- include_tasks: install_samtools.yml
-- include_tasks: install_smalt.yml
-- include_tasks: install_trim-galore.yml
-- include_tasks: install_trimmomatic.yml
-- include_tasks: install_varscan.yml
+#- include_tasks: install_assembly_improvement.yml
+#- include_tasks: install_bbtools.yml
+#- include_tasks: install_bcftools.yml
+#- include_tasks: install_blast+.yml
+#- include_tasks: install_bwa.yml
+- include_tasks: install_centrifuge.yml
+#- include_tasks: install_fastqc.yml
+#- include_tasks: install_GATK.yml
+#- include_tasks: install_htslib.yml
+#- include_tasks: install_iva.yml
+#- include_tasks: install_kmc.yml
+#- include_tasks: install_kraken.yml
+#- include_tasks: install_multiqc.yml
+#- include_tasks: install_mummer.yml
+#- include_tasks: install_picard.yml
+#- include_tasks: install_quast.yml
+#- include_tasks: install_samtools.yml
+#- include_tasks: install_smalt.yml
+#- include_tasks: install_trim-galore.yml
+#- include_tasks: install_trimmomatic.yml
+#- include_tasks: install_varscan.yml

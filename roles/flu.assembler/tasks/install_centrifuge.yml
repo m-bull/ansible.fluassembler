@@ -1,0 +1,52 @@
+---
+
+- name: "Download Centrifuge"
+  unarchive:
+    src: "{{ centrifuge_archive_url }}"
+    dest: "{{ centrifuge_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: "Make Centrifuge"
+  command: make
+  args:
+    chdir: "{{ centrifuge_install_dir }}/centrifuge-{{ centrifuge_version }}"
+    creates: "{{ path_dir }}/centrifuge-{{ centrifuge_version }}/centrifuge-class"
+  become: yes
+
+- name: "Link Centrifuge binaries into PATH"
+  file:
+    state: link
+    src: "{{ centrifuge_install_dir }}/centrifuge-{{ centrifuge_version }}/{{ item }}"
+    dest: "{{ path_dir }}/{{ item }}"
+  become: yes
+  with_items:
+    - centrifuge
+    - centrifuge-build
+    - centrifuge-download
+    - centrifuge-kreport
+
+- name: "Check Centrifuge DB dir exists"
+  file:
+    state: directory
+    path: "{{ centrifuge_db_dir }}"
+    mode: 0755
+  become: yes
+  when: download_centrifuge_db == True
+
+- name: "Download Centrifuge database"
+  unarchive:
+    src: "{{ centrifuge_db_url }}"
+    dest: "{{ centrifuge_db_dir }}"
+    remote_src: yes
+    creates: "{{ centrifuge_db_dir }}/{{ centrifuge_db_name }}.1.cf"
+  become: yes
+  when: download_centrifuge_db == True
+
+- name: "Set environment variable pointing to Centrifuge DB dir"
+  lineinfile:
+    state: present
+    path: /etc/environment
+    line: "export CENTRIFUGE_INDEXES={{ centrifuge_db_dir }}"
+  become: yes
+  when: download_centrifuge_db == True
