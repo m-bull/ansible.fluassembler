@@ -7,14 +7,14 @@
     remote_src: yes
   become: yes
 
-- name: Make Samtools
+- name: "Make Samtools"
   command: make
   args:
     chdir: "{{ samtools_install_dir }}/samtools-{{ samtools_version }}"
     creates: "{{ path_dir }}/samtools-{{ samtools_version }}/samtools"
   become: yes
 
-- name: Link samtools binaries into PATH
+- name: "Link Samtools binaries into PATH"
   file:
     state: link
     src: "{{ samtools_install_dir }}/samtools-{{ samtools_version }}/samtools"

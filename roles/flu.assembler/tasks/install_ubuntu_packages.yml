@@ -1,0 +1,24 @@
+---
+
+- name: "Install Ubuntu packages required for building pipeline dependencies"
+  apt:
+    name: "{{ item }}"
+    state: latest
+  become: yes
+  with_items:
+    - cpanminus
+    - libbz2-dev
+    - libncurses5-dev
+    - liblz-dev
+    - liblzma-dev
+    - openjdk-9-jdk-headless
+    - python-biopython
+    - python3
+    - python3-pip
+    - unzip
+    - zlib1g-dev
+
+- name: "Get Time::Piece from cpan"
+  cpanm:
+    name: "Time::Piece"
+  become: yes

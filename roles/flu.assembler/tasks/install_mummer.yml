@@ -7,7 +7,7 @@
     remote_src: yes
   become: yes
 
-- name: Make MUMmer
+- name: "Make MUMmer"
   shell: "make"
   args:
     chdir: "{{ mummer_install_dir }}/MUMmer{{ mummer_version }}"

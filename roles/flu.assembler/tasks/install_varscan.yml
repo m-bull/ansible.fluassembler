@@ -6,14 +6,14 @@
     dest: "{{ varscan_install_dir }}"
   become: yes
 
-- name: Link varscan jar into PATH
+- name: "Link varscan jar into PATH"
   file:
     state: link
     src: "{{ varscan_install_dir }}/VarScan.v{{ varscan_version }}.jar"
     dest: "{{ path_dir }}/varscan.jar"
   become: yes
 
-- name: Create varscan helper script
+- name: "Create varscan helper script"
   template:
     src: varscan_helper.j2
     dest: "{{ path_dir }}/varscan"

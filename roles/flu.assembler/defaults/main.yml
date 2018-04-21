@@ -23,6 +23,11 @@ htslib_version: 1.8
 htslib_archive_url: https://github.com/samtools/htslib/releases/download/{{ htslib_version }}/htslib-{{ htslib_version }}.tar.bz2
 htslib_install_dir: /usr/local/bin
 
+## BCFtools
+bcftools_version: 1.8
+bcftools_archive_url: https://github.com/samtools/bcftools/releases/download/{{ bcftools_version }}/bcftools-{{ bcftools_version }}.tar.bz2
+bcftools_install_dir: /usr/local/bin
+
 ## BLAST+
 blast_version: 2.7.1+
 blast_archive_url: https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-{{ blast_version }}-x64-linux.tar.gz

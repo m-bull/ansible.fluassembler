@@ -14,7 +14,7 @@
     creates: "{{ path_dir }}/htslib-{{ htslib_version }}/samtools"
   become: yes
 
-- name: Link HTSLib binaries into PATH
+- name: "Link HTSLib binaries into PATH"
   file:
     state: link
     src: "{{ htslib_install_dir }}/htslib-{{ htslib_version }}/{{ item }}"

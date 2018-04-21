@@ -15,7 +15,7 @@
     patterns: "GenomeAnalysisTK.jar"
   register: GATK_jar_path
 
-- name: Create GATK helper script
+- name: "Create GATK helper script"
   template:
     src: GATK_helper.j2
     dest: "{{ path_dir }}/gatk"

@@ -7,7 +7,7 @@
     remote_src: yes
   become: yes
 
-- name: Make SMALT
+- name: "Make SMALT"
   shell: "./configure && make"
   args:
     chdir: "{{ smalt_install_dir }}/smalt-{{ smalt_version }}"

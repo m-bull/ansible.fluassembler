@@ -19,7 +19,7 @@
     patterns: "picard.jar"
   register: picard_jar_path
 
-- name: Create picard helper script
+- name: "Create picard helper script"
   template:
     src: picard_helper.j2
     dest: "{{ path_dir }}/picard"

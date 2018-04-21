@@ -1,0 +1,7 @@
+---
+
+- name: "Install Bio::AssemblyImprovement with CPANMinus"
+  cpanm:
+    name: "Bio::AssemblyImprovement"
+    notest: yes
+  become: yes

@@ -1,0 +1,23 @@
+---
+
+- name: "Download BCFtools"
+  unarchive:
+    src: "{{ bcftools_archive_url }}"
+    dest: "{{ bcftools_install_dir }}"
+    remote_src: yes
+  become: yes
+
+- name: "Make BCFtools"
+  command: make
+  args:
+    chdir: "{{ bcftools_install_dir }}/bcftools-{{ bcftools_version }}"
+    creates: "{{ path_dir }}/bcftools-{{ bcftools_version }}/bcftools"
+  become: yes
+
+- name: "Link BCFtools binaries into PATH"
+  file:
+    state: link
+    src: "{{ bcftools_install_dir }}/bcftools-{{ bcftools_version }}/bcftools"
+    dest: "{{ path_dir }}/bcftools"
+  become: yes
+

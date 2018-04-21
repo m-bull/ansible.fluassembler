@@ -6,7 +6,7 @@
     state: present
   become: yes
 
-- name: Install CentOS packages required for building pipeline dependencies
+- name: "Install CentOS packages required for building pipeline dependencies"
   yum:
     name: "{{ item }}"
     state: latest
@@ -17,6 +17,8 @@
     - gcc-c++
     - java-1.8.0-openjdk-headless
     - ncurses-devel
+    - perl-App-cpanminus
+    - perl-Time-Piece
     - python2-pip
     - python34
     - python34-pip
@@ -25,7 +27,7 @@
     - xz-devel
     - zlib-devel
 
-- name: Install required python packages from yum
+- name: "Install required python packages from yum"
   yum:
     name: "{{ item }}"
     state: latest
