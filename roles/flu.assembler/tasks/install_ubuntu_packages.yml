@@ -1,5 +1,18 @@
 ---
 
+- name: "Install aptitude"
+  apt:
+    name: aptitude
+    state: latest
+  become: yes 
+
+- name: "Update and upgrade system packages"
+  apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+  become: yes
+
 - name: "Install Ubuntu packages required for building pipeline dependencies"
   apt:
     name: "{{ item }}"
@@ -13,6 +26,7 @@
     - liblzma-dev
     - openjdk-9-jdk-headless
     - python-biopython
+    - python-pip
     - python3
     - python3-pip
     - unzip

@@ -28,7 +28,6 @@
 - include_tasks: install_fastqc.yml
 - include_tasks: install_GATK.yml
 - include_tasks: install_htslib.yml
-- include_tasks: install_iva.yml
 - include_tasks: install_kmc.yml
 - include_tasks: install_kraken.yml
 - include_tasks: install_multiqc.yml
@@ -40,3 +39,6 @@
 - include_tasks: install_trim-galore.yml
 - include_tasks: install_trimmomatic.yml
 - include_tasks: install_varscan.yml
+
+# This needs to go last because the pip install checks depends on earlier stuff
+- include_tasks: install_iva.yml
