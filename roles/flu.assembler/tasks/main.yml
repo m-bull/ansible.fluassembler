@@ -35,6 +35,7 @@
 - include_tasks: install_picard.yml
 - include_tasks: install_quast.yml
 - include_tasks: install_samtools.yml
+- include_tasks: install_seqtk.yml
 - include_tasks: install_smalt.yml
 - include_tasks: install_trim-galore.yml
 - include_tasks: install_trimmomatic.yml

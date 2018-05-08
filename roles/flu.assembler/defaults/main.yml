@@ -95,6 +95,10 @@ trimmomatic_version: 0.36
 trimmomatic_archive_url: http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-{{ trimmomatic_version }}.zip
 trimmomatic_install_dir: /usr/local/bin
 
+## Seqtk
+seqtk_repo: https://github.com/lh3/seqtk.git
+
+
 ## Varscan
 varscan_version: 2.4.2
 varscan_archive_url: https://github.com/dkoboldt/varscan/releases/download/{{ varscan_version }}/VarScan.v{{ varscan_version }}.jar
